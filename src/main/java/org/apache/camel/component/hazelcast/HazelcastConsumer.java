@@ -30,16 +30,15 @@ import org.apache.camel.Processor;
 import org.apache.camel.impl.DefaultConsumer;
 import org.apache.camel.impl.DefaultExchange;
 import org.apache.camel.impl.converter.AsyncProcessorTypeConverter;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Implementation of Hazelcast {@link Consumer} component.
  */
 public class HazelcastConsumer extends DefaultConsumer implements Runnable {
 
-	private static final Log LOG = LogFactory.getLog(HazelcastConsumer.class);
-
+	private static final Logger LOG = LoggerFactory.getLogger(HazelcastConsumer.class);
 	private final transient HazelcastEndpoint endpoint;
 	private final transient AsyncProcessor processor;
 
