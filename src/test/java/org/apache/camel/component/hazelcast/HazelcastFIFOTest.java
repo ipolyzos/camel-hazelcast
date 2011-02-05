@@ -40,7 +40,7 @@ public class HazelcastFIFOTest extends CamelTestSupport {
 
 	@Test
 	public void fifoTesting() throws Exception {
-		int bodyCount = 5;
+		final int bodyCount = 5;
 
 		List<String> bodies = new ArrayList<String>();
 		for (int i = 0; i < bodyCount; i++) {
