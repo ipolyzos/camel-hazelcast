@@ -24,12 +24,12 @@
 		<groupId>org.apache.camel</groupId>
 		<artifactId>camel-parent</artifactId>
 		<version>2.7-SNAPSHOT</version>
-                <relativePath>../../parent</relativePath>
+        <relativePath>../../parent</relativePath>
 	</parent>
 
-	<artifactId>camel-hzlq</artifactId>
+	<artifactId>camel-hazelcast</artifactId>
 	<packaging>bundle</packaging>
-	<name>Camel :: HazelCast Queue</name>
+	<name>Camel :: HazelCast</name>
 
 	<description>
 		Camel HazelCast based work queue implementation
@@ -39,7 +39,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<hazelcast.version>1.9.1</hazelcast.version>
 		<camel.osgi.export.pkg>
-			org.apache.camel.component.hzlq.*
+			org.apache.camel.component.hazelcast.*
 		</camel.osgi.export.pkg>
 	</properties>
 

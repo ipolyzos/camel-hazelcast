@@ -14,50 +14,38 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.camel.component.hzlq;
+package org.apache.camel.component.hazelcast;
 
 import org.apache.camel.EndpointInject;
-import org.apache.camel.Exchange;
-import org.apache.camel.ExchangePattern;
-import org.apache.camel.Processor;
-import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.mock.MockEndpoint;
-import org.apache.camel.test.junit4.CamelTestSupport;
+import org.apache.camel.test.junit4.CamelSpringTestSupport;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+/**
+ * Spring xml configuration support tests.
+ *
+ * Based on {@link http://camel.apache.org/spring.html}
+ */
 
 @Ignore("Tests should run manually.")
-public class HzlQInOutTest extends CamelTestSupport {
+public class HazelcastSpringSupportTest extends CamelSpringTestSupport {
 
 	@EndpointInject(uri = "mock:result")
 	private MockEndpoint mock;
 
 	@Test
-	public void sendInOut() throws Exception {
+	public void simpleSend() throws Exception {
 		mock.expectedMessageCount(1);
-		mock.expectedBodiesReceived("test");
 
-		template.send("direct:foo", ExchangePattern.InOut, new Processor() {
-			public void process(Exchange exchange) throws Exception {
-				exchange.getIn().setBody("test");
-			}
-		});
+		template.sendBody("hazelcast:foo", "test");
+
 		assertMockEndpointsSatisfied();
-		mock.reset();
 	}
 
-
 	@Override
-	protected RouteBuilder createRouteBuilder() throws Exception {
-		return new RouteBuilder() {
-			@Override
-			public void configure() throws Exception {
-				from("direct:foo")
-					.to("hzlq:foo");
-
-				from("hzlq:foo")
-					.to("mock:result");
-			}
-		};
+	protected ClassPathXmlApplicationContext createApplicationContext() {
+		return new ClassPathXmlApplicationContext("org/apache/camel/component/hzlq/test/hzlq-test-route.xml");
 	}
 }

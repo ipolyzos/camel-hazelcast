@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.camel.component.hzlq;
+package org.apache.camel.component.hazelcast;
 
 import java.util.concurrent.BlockingQueue;
 
@@ -26,14 +26,14 @@ import org.apache.camel.impl.DefaultEndpoint;
 import org.apache.camel.util.ObjectHelper;
 
 /**
- * HzlQ {@link Endpoint} implementation.
+ * Hazelcast {@link Endpoint} implementation.
  */
-public class HzlQEndpoint extends DefaultEndpoint {
+public class HazelcastEndpoint extends DefaultEndpoint {
 
 	private final BlockingQueue queue;
-	private final HzlqConfiguration configuration;
+	private final HazelcastConfiguration configuration;
 
-	public HzlQEndpoint(final String uri, final HzlQComponent component, final BlockingQueue hzlq, final HzlqConfiguration configuration) {
+	public HazelcastEndpoint(final String uri, final HazelcastComponent component, final BlockingQueue hzlq, final HazelcastConfiguration configuration) {
 		super(uri, component);
 		ObjectHelper.notNull(hzlq, "queue");
 		this.queue = hzlq;
@@ -41,18 +41,18 @@ public class HzlQEndpoint extends DefaultEndpoint {
 	}
 
 	public Producer createProducer() throws Exception {
-		return new HzlQProducer(this, getQueue());
+		return new HazelcastProducer(this, getQueue());
 	}
 
 	public Consumer createConsumer(final Processor processor) throws Exception {
-		return new HzlQConsumer(this, processor);
+		return new HazelcastConsumer(this, processor);
 	}
 
 	public BlockingQueue getQueue() {
 		return queue;
 	}
 
-	public HzlqConfiguration getConfiguration() {
+	public HazelcastConfiguration getConfiguration() {
 		return configuration;
 	}
 

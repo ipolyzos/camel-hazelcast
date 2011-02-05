@@ -14,15 +14,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.camel.component.hzlq;
+package org.apache.camel.component.hazelcast;
 
-public class HzlqConfiguration {
+public class HazelcastConfiguration {
 
 	private int concurrentConsumers = 1;
 	private int pollInterval = 1000;
 	private String queueName;
 
-	public HzlqConfiguration() {
+	public HazelcastConfiguration() {
 		super();
 	}
 

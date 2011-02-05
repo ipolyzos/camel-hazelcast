@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.camel.component.hzlq;
+package org.apache.camel.component.hazelcast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +32,7 @@ import org.junit.Test;
  */
 
 @Ignore("Tests should run manually.")
-public class HzlqFIFOTest extends CamelTestSupport {
+public class HazelcastFIFOTest extends CamelTestSupport {
 
 	@EndpointInject(uri = "mock:result")
 	private MockEndpoint mock;
@@ -51,7 +51,7 @@ public class HzlqFIFOTest extends CamelTestSupport {
 		mock.expectedMessageCount(bodyCount);
 
 		for (int i = 0; i < bodyCount; i++) {
-			template.sendBody("hzlq:foo", "test" + i);
+			template.sendBody("hazelcast:foo", "test" + i);
 		}
 
 		assertMockEndpointsSatisfied();
@@ -64,7 +64,7 @@ public class HzlqFIFOTest extends CamelTestSupport {
 		return new RouteBuilder() {
 			@Override
 			public void configure() throws Exception {
-				from("hzlq:foo")
+				from("hazelcast:foo")
 					.to("mock:result");
 			}
 		};

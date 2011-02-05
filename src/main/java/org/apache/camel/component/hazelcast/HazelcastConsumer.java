@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.camel.component.hzlq;
+package org.apache.camel.component.hazelcast;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;
@@ -34,20 +34,20 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- * Implementation of HzlQ {@link Consumer} component.
+ * Implementation of Hazelcast {@link Consumer} component.
  */
-public class HzlQConsumer extends DefaultConsumer implements Runnable {
+public class HazelcastConsumer extends DefaultConsumer implements Runnable {
 
-	private static final Log LOG = LogFactory.getLog(HzlQConsumer.class);
+	private static final Log LOG = LogFactory.getLog(HazelcastConsumer.class);
 
-	private final transient HzlQEndpoint endpoint;
+	private final transient HazelcastEndpoint endpoint;
 	private final transient AsyncProcessor processor;
 
 	private transient ExecutorService executor;
 
-	public HzlQConsumer(final Endpoint endpoint, final Processor processor) {
+	public HazelcastConsumer(final Endpoint endpoint, final Processor processor) {
 		super(endpoint, processor);
-		this.endpoint = (HzlQEndpoint) endpoint;
+		this.endpoint = (HazelcastEndpoint) endpoint;
 		this.processor = AsyncProcessorTypeConverter.convert(processor);
 	}
 

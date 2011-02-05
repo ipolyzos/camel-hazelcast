@@ -14,18 +14,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.camel.component.hzlq;
+package org.apache.camel.component.hazelcast;
 
+import org.apache.camel.component.hazelcast.HazelcastComponent;
+import org.apache.camel.component.hazelcast.HazelcastEndpoint;
 import org.apache.camel.test.junit4.CamelTestSupport;
 import org.junit.Test;
 
-public class HzlQConfigurationTest extends CamelTestSupport {
+public class HazelcastConfigurationTest extends CamelTestSupport {
 
 	@Test
 	public void createEndpointWithNoParams() throws Exception{
-		HzlQComponent hzlqComponent =new HzlQComponent(context);
+		HazelcastComponent hzlqComponent =new HazelcastComponent(context);
 
-		HzlQEndpoint hzlqEndpoint =(HzlQEndpoint) hzlqComponent.createEndpoint("hzlq:foo");
+		HazelcastEndpoint hzlqEndpoint =(HazelcastEndpoint) hzlqComponent.createEndpoint("hzlq:foo");
 
 		assertEquals("Invalid queue name", "foo", hzlqEndpoint.getConfiguration().getQueueName());
 		assertEquals("Default value of concurrent consumers is invalid", 1, hzlqEndpoint.getConfiguration().getConcurrentConsumers());
@@ -35,8 +37,8 @@ public class HzlQConfigurationTest extends CamelTestSupport {
 
 	@Test
 	public void createEndpointWithConcurrentConsumersParam() throws Exception{
-		HzlQComponent hzlqComponent =new HzlQComponent(context);
-		HzlQEndpoint hzlqEndpoint =(HzlQEndpoint) hzlqComponent.createEndpoint("hzlq:foo?concurrentConsumers=4");
+		HazelcastComponent hzlqComponent =new HazelcastComponent(context);
+		HazelcastEndpoint hzlqEndpoint =(HazelcastEndpoint) hzlqComponent.createEndpoint("hzlq:foo?concurrentConsumers=4");
 
 		assertEquals("Invalid queue name", "foo", hzlqEndpoint.getConfiguration().getQueueName());
 		assertEquals("Value of concurrent consumers is invalid", 4, hzlqEndpoint.getConfiguration().getConcurrentConsumers());
@@ -46,8 +48,8 @@ public class HzlQConfigurationTest extends CamelTestSupport {
 
 	@Test
 	public void createEndpointWithPoolIntevalParam() throws Exception{
-		HzlQComponent hzlqComponent =new HzlQComponent(context);
-		HzlQEndpoint hzlqEndpoint =(HzlQEndpoint) hzlqComponent.createEndpoint("hzlq:foo?pollInterval=4000");
+		HazelcastComponent hzlqComponent =new HazelcastComponent(context);
+		HazelcastEndpoint hzlqEndpoint =(HazelcastEndpoint) hzlqComponent.createEndpoint("hzlq:foo?pollInterval=4000");
 
 		assertEquals("Invalid queue name", "foo", hzlqEndpoint.getConfiguration().getQueueName());
 		assertEquals("Default value of concurrent consumers is invalid", 1, hzlqEndpoint.getConfiguration().getConcurrentConsumers());
@@ -58,7 +60,7 @@ public class HzlQConfigurationTest extends CamelTestSupport {
 
 	@Test(expected = IllegalArgumentException.class)
     public void createEndpointWithoutEmptyName() throws Exception {
-		HzlQComponent hzlqComponent =new HzlQComponent(context);
-		final HzlQEndpoint hzlqEndpoint =(HzlQEndpoint) hzlqComponent.createEndpoint("hzlq: ?concurrentConsumers=4");
+		HazelcastComponent hzlqComponent =new HazelcastComponent(context);
+		final HazelcastEndpoint hzlqEndpoint =(HazelcastEndpoint) hzlqComponent.createEndpoint("hzlq: ?concurrentConsumers=4");
     }
 }

@@ -25,11 +25,11 @@
   <camelContext id="xmlRoute" xmlns="http://camel.apache.org/schema/spring">
     <route>
       <from uri="direct:start" />
-      <to uri="hzlq:foo" />
+      <to uri="hazelcast:foo" />
     </route>
 
     <route>
-      <from uri="hzlq:foo" />
+      <from uri="hazelcast:foo" />
       <to uri="mock:result" />
     </route>
   </camelContext>

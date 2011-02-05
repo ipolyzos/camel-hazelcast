@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.camel.component.hzlq;
+package org.apache.camel.component.hazelcast;
 
 import org.apache.camel.EndpointInject;
 import org.apache.camel.Exchange;
@@ -27,25 +27,25 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 @Ignore("Tests should run manually.")
-public class HzlQInOnlyTest extends CamelTestSupport {
+public class HazelcastInOutTest extends CamelTestSupport {
 
 	@EndpointInject(uri = "mock:result")
 	private MockEndpoint mock;
 
 	@Test
-	public void sendInOnly() throws Exception {
+	public void sendInOut() throws Exception {
 		mock.expectedMessageCount(1);
 		mock.expectedBodiesReceived("test");
 
-		template.send("direct:foo", ExchangePattern.InOnly, new Processor() {
+		template.send("direct:foo", ExchangePattern.InOut, new Processor() {
 			public void process(Exchange exchange) throws Exception {
 				exchange.getIn().setBody("test");
 			}
 		});
-
 		assertMockEndpointsSatisfied();
 		mock.reset();
 	}
+
 
 	@Override
 	protected RouteBuilder createRouteBuilder() throws Exception {
@@ -53,9 +53,9 @@ public class HzlQInOnlyTest extends CamelTestSupport {
 			@Override
 			public void configure() throws Exception {
 				from("direct:foo")
-					.to("hzlq:foo");
+					.to("hazelcast:foo");
 
-				from("hzlq:foo")
+				from("hazelcast:foo")
 					.to("mock:result");
 			}
 		};

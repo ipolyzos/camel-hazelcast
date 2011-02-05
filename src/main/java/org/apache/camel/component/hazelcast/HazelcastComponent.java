@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.camel.component.hzlq;
+package org.apache.camel.component.hazelcast;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -29,25 +29,25 @@ import org.apache.camel.util.ObjectHelper;
 import com.hazelcast.core.Hazelcast;
 
 /**
- * HzlQ Component :  implementation of a work queue based on
+ * Hazelcast Component :  implementation of a work queue based on
  * <a href="http://www.hazelcast.com">HazelCast</a> in-memory
  * data grid.
  */
-public class HzlQComponent extends DefaultComponent {
+public class HazelcastComponent extends DefaultComponent {
 
 	private final transient Map<String, BlockingQueue> queues = new HashMap<String, BlockingQueue>();
 
-	public HzlQComponent() {
+	public HazelcastComponent() {
 		super();
 	}
 
-	public HzlQComponent(final CamelContext context) {
+	public HazelcastComponent(final CamelContext context) {
 		super(context);
 	}
 
 	@Override
 	protected Endpoint createEndpoint(final String uri, final String remaining, final Map<String, Object> parameters) throws Exception {
-		final HzlqConfiguration config = new HzlqConfiguration();
+		final HazelcastConfiguration config = new HazelcastConfiguration();
 		setProperties(config, parameters);
 
 		if(ObjectHelper.isEmpty(remaining)){
@@ -56,10 +56,10 @@ public class HzlQComponent extends DefaultComponent {
 
 		config.setQueueName(remaining);
 
-		return new HzlQEndpoint(uri, this, createQueue(config,parameters), config);
+		return new HazelcastEndpoint(uri, this, createQueue(config,parameters), config);
 	}
 
-	public synchronized BlockingQueue createQueue(final HzlqConfiguration config, final Map<String, Object> parameters) {
+	public synchronized BlockingQueue createQueue(final HazelcastConfiguration config, final Map<String, Object> parameters) {
 		final String qName= config.getQueueName();
 
 		if (queues.containsKey(qName)){

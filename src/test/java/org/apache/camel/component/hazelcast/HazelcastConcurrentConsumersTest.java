@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.camel.component.hzlq;
+package org.apache.camel.component.hazelcast;
 
 import org.apache.camel.EndpointInject;
 import org.apache.camel.builder.RouteBuilder;
@@ -28,7 +28,7 @@ import org.junit.Test;
  */
 
 @Ignore("Tests should run manually.")
-public class HzlQConcurrentConsumersTest extends CamelTestSupport {
+public class HazelcastConcurrentConsumersTest extends CamelTestSupport {
 
 	@EndpointInject(uri = "mock:result")
 	private MockEndpoint mock;
@@ -41,7 +41,7 @@ public class HzlQConcurrentConsumersTest extends CamelTestSupport {
         mock.expectedMessageCount(bodyCount);
 
         for (int i=0;i<bodyCount;i++){
-        	template.sendBody("hzlq:foo?concurrentConsumers=4", "test");
+        	template.sendBody("hazelcast:foo?concurrentConsumers=4", "test");
         }
 
         assertMockEndpointsSatisfied();
@@ -53,7 +53,7 @@ public class HzlQConcurrentConsumersTest extends CamelTestSupport {
         return new RouteBuilder() {
             @Override
             public void configure() throws Exception {
-                from("hzlq:foo?concurrentConsumers=4")
+                from("hazelcast:foo?concurrentConsumers=4")
                 	.threads(6)
                 	.to("mock:result");
             }

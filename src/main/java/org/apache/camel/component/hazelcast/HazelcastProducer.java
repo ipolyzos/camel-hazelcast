@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.camel.component.hzlq;
+package org.apache.camel.component.hazelcast;
 
 import java.io.InputStream;
 import java.io.Serializable;
@@ -28,14 +28,14 @@ import org.apache.camel.Producer;
 import org.apache.camel.impl.DefaultProducer;
 
 /**
- * Implementation of HzlQ {@link Producer} component. Just appends
+ * Implementation of Hazelcast {@link Producer} component. Just appends
  * exchange body into the Hazelcast {@link BlockingQueue}.
  */
-public class HzlQProducer extends DefaultProducer implements AsyncProcessor {
+public class HazelcastProducer extends DefaultProducer implements AsyncProcessor {
 
     private final transient BlockingQueue queue;
 
-    public HzlQProducer(final HzlQEndpoint endpoint, final BlockingQueue hzlq) {
+    public HazelcastProducer(final HazelcastEndpoint endpoint, final BlockingQueue hzlq) {
         super(endpoint);
         this.queue = hzlq;
     }
