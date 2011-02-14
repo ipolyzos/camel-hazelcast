@@ -40,16 +40,16 @@ public class HazelcastProducer extends DefaultProducer implements AsyncProcessor
     }
 
     public void process(final Exchange exchange) throws Exception {
-    	checkAndStore(exchange, queue);
+    	checkAndStore(exchange);
     }
 
 	public boolean process(final Exchange exchange, final AsyncCallback callback) {
-    	checkAndStore(exchange, queue);
+    	checkAndStore(exchange);
         callback.done(true);
         return true;
     }
 
-    private void checkAndStore(final Exchange exchange, final BlockingQueue queue) {
+    private void checkAndStore(final Exchange exchange) {
     	Object obj;
     	Object body = exchange.getIn().getBody();
 

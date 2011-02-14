@@ -31,7 +31,7 @@ import org.junit.Test;
  * Test FIFO ordering.
  */
 
-@Ignore("Tests should run manually.")
+//@Ignore("Tests should run manually.")
 public class HazelcastFIFOTest extends CamelTestSupport {
 
 	@EndpointInject(uri = "mock:result")
