@@ -55,8 +55,7 @@ public class HazelcastProducer extends DefaultProducer implements AsyncProcessor
 
     	// in case body is not serializable convert to byte array
     	if (!(body instanceof Serializable)){
-    		final InputStream is = exchange.getContext().getTypeConverter().convertTo(InputStream.class, body);
-            obj = exchange.getContext().getTypeConverter().convertTo(byte[].class, is);
+            obj = exchange.getIn().getBody(byte[].class);
         }else{
         	obj=body;
         }
