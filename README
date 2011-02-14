@@ -4,7 +4,7 @@
     | |__| (_| | | | | | |  __/ |_____|  _  | (_| |/ /  __/ | (_| (_| \__ \ |_
      \____\__,_|_| |_| |_|\___|_|     |_| |_|\__,_/___\___|_|\___\__,_|___/\__|
 
-                      		 Camel-Hazelcast
+                      		Camel-Hazelcast
 
 Overview
 ======
@@ -21,8 +21,8 @@ For more information on Hazelcast please refer to : http://www.hazelcast.com/.
 Notes:
 ======
 
-This component has been contributed in Apache Camel, for more please refer to:
-           https://issues.apache.org/jira/browse/CAMEL-3590
+This component has been contributed in Apache Camel projecy, for more info 
+please refer to:  https://issues.apache.org/jira/browse/CAMEL-3590
 
 
 License:
