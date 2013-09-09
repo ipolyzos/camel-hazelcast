@@ -9,10 +9,8 @@
 Overview
 ========
 
-Camel-Hazelcast component implements a work-queue on top of the Hazelcast in-memory data-grid.
-Its purpose is to support asynchronous SEDA architectures, similar to the core "SEDA" component.
-By making use of Hazelcast's implementation of BlockingQueue, it allows the system to scale
-across multiple machines with minimal or no configuration while the replication features provided
+Camel-Hazelcast component implements a work-queue on top of the Hazelcast in-memory data-grid. Its purpose is to support asynchronous SEDA architectures, similar to the core "SEDA" component.
+By making use of Hazelcast's implementation of BlockingQueue, it allows the system to scale across multiple machines with minimal or no configuration while the replication features provided
 increase reliability and fault-tolerance.
 
 For more information on Hazelcast please refer to : http://www.hazelcast.com/.
@@ -21,13 +19,11 @@ For more information on Hazelcast please refer to : http://www.hazelcast.com/.
 Notes:
 ========
 
-- This repository is no longer updated. Joined forces with Claus Straube and work 
-together toward  a more complete version of the component. 
+- This repository is no longer updated. Joined forces with Claus Straube and work together toward  a more complete version of the component. 
  
    For  the new version please refer to : https://github.com/catify/camel-hazelcast
 
-- This component has been contributed in Apache Camel project, for more info 
-please refer to:  https://issues.apache.org/jira/browse/CAMEL-3590
+- This component has been contributed in Apache Camel project, for more info please refer to:  https://issues.apache.org/jira/browse/CAMEL-3590
 
 
 License:
